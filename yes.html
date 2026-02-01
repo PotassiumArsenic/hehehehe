@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Said Yes!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff8c9f 0%, #ffb6d9 100%);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .success-container {
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .back-button {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            background-color: white;
+            color: #ff1493;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .back-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                height: auto;
+                min-height: 100vh;
+                padding: 1rem;
+            }
+
+            .success-container {
+                padding: 1rem 0;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .back-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <h1>Thankuuu 💕</h1>
+        <button class="back-button" onclick="window.location.href='index.html'">Go Back</button>
+    </div>
+
+    <!-- Canvas Confetti Script -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script>
+        // Fire confetti when page loads
+        window.addEventListener('load', function() {
+            makeItRain();
+        });
+
+        function makeItRain() {
+            var duration = 3000; // 3 seconds
+            var end = Date.now() + duration;
+            var colors = ['#ffffff', '#ff79b4', '#AC1754', '#F7A8C4', '#F37199'];
+
+            function frame() {
+                // Left side confetti
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                
+                // Right side confetti
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }
+            frame();
+        }
+    </script>
+</body>
+</html>
